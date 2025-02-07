@@ -16,6 +16,8 @@ const INIT_POSITION = { x: 0, y: 0 };
  * @method handleKeyDown - Handles key down events to change the object's velocity.
  * @method handleKeyUp - Handles key up events to stop the object's velocity.
  */
+let itemCollected = false; 
+
 class Player extends Character {
     /**
      * The constructor method is called when a new Player object is created.
@@ -26,7 +28,19 @@ class Player extends Character {
         super(data);
         this.keypress = data?.keypress || {up: 87, left: 65, down: 83, right: 68};
         this.bindEventListeners();
+
     }
+
+    setPlayerItem() {
+        console.log(itemCollected);
+        itemCollected = true;
+    }
+
+    getPlayerItem(){
+        console.log(itemCollected);
+        return itemCollected;
+    }
+
 
 
     /**
@@ -43,22 +57,30 @@ class Player extends Character {
     handleKeyDown({ keyCode }) {
         switch (keyCode) {
             case this.keypress.up:
-                this.velocity.y -= this.yVelocity;
+                this.velocity.y = this.normalizeMovement(-2);
                 this.direction = 'up';
                 break;
             case this.keypress.left:
-                this.velocity.x -= this.xVelocity;
+                this.velocity.x = this.normalizeMovement(-2);
                 this.direction = 'left';
                 break;
             case this.keypress.down:
-                this.velocity.y += this.yVelocity;
+                this.velocity.y = this.normalizeMovement(2);
                 this.direction = 'down';
                 break;
             case this.keypress.right:
-                this.velocity.x += this.xVelocity;
+                this.velocity.x = this.normalizeMovement(2);
                 this.direction = 'right';
                 break;
         }
+    }
+
+    normalizeMovement(speed){
+        if(Math.abs(this.velocity.x == 2) && Math.abs(this.velocity.y) == 2){
+            speed = Math.sqrt((this.velocity.x*this.velocity.x) + (this.velocity.y*this.velocity.y)) * Math.sign(speed);
+        }
+
+        return speed;
     }
 
     /**
