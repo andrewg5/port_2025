@@ -45,13 +45,28 @@ class GameLevelDesert {
         hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
         keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
     };
+
+    // NPC data  
+    const sprite_src_npc = path + "/images/gamify/tux.png"; // be sure to include the path
+    const sprite_data_npc = {
+        id: 'Tux',
+        greeting: "Give item!",
+        src: sprite_src_npc,
+        SCALE_FACTOR: 8,  // Adjust this based on your scaling needs
+        ANIMATION_RATE: 50,
+        pixels: {height: 256, width: 352},
+        INIT_POSITION: { x: (width / 2), y: (height / 2)},
+        orientation: {rows: 8, columns: 11 },
+        down: {row: 5, start: 0, columns: 3 },  // This is the stationary npc, down is default 
+        hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
+      };
     
     // Player data for item
     const spriteItem1 = path + "/images/gamify/item.png"; // be sure to include the path
     const scaleItem1 = 10;
     const spriteDataItem1 = {
         id: 'Item',
-        greeting: "Item needed to progress",
+        greeting: "none",
         src: spriteItem1,
         SCALE_FACTOR: scaleItem1,
         STEP_FACTOR: 1000,
@@ -74,6 +89,7 @@ class GameLevelDesert {
     this.objects = [
       { class: Background, data: image_data_dungeon },
       { class: Player, data: sprite_data_chillguy },
+      {class: Character, data: sprite_data_npc},
       { class: Item, data: spriteDataItem1},
     ];
   }

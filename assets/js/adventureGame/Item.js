@@ -198,7 +198,9 @@ class Item extends GameObject {
 
         switch (key) {
             case 'e':  
+                //console.log(this.hasCollided("Hi I am Chill Guy, the desert wanderer. I am looking for wisdome and adventure!"));
                 player.setPlayerItem();
+                this.hasCollided("Hi I am Chill Guy, the desert wanderer. I am looking for wisdome and adventure!");
                 break;
             case 'u':  
                 player.getPlayerItem();

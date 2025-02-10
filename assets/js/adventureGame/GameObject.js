@@ -94,6 +94,28 @@ class GameObject {
         }
     }
 
+    hasCollided(greeting) {
+        let collisionDetected = false;
+
+        for (var gameObj of GameEnv.gameObjects) {
+            if (gameObj.canvas && this != gameObj) {
+                this.isCollision(gameObj);
+                if (this.collisionData.hit) {
+                    collisionDetected = true;
+                    const objectGreet = this.collisionData.touchPoints.other.greet;
+
+                        if(objectGreet == greeting){
+                            return true;
+                        }
+                            
+                    
+                }
+            }
+        }
+
+        return false;
+    }
+
     /** Collision detection method
      * usage: if (object.isCollision(platform)) { // action }
      */
@@ -157,12 +179,18 @@ class GameObject {
      */
     handleCollisionEvent() {
         const objectID = this.collisionData.touchPoints.other.id;
-        //const objectGreet = this.collisionData.touchPoints.other.greet;
+        const objectGreet = this.collisionData.touchPoints.other.greet;
+
         // check if the collision type is not already in the collisions array
         if (!this.state.collisionEvents.includes(objectID)) {
             // add the collisionType to the collisions array, making it the current collision
+
             this.state.collisionEvents.push(objectID);
-            //alert(objectGreet);
+            if(objectGreet != "none"){
+                //alert(objectGreet);
+            }
+            console.log(objectGreet);
+                
         }
         this.handleReaction();
     }
