@@ -43,7 +43,7 @@ const INIT_POSITION = { x: 0, y: 0 };
  * @method destroy - Removes the object from the game environment.    
  */
 
-let player; 
+let levelData; 
 
 
 
@@ -106,9 +106,7 @@ class Item extends GameObject {
         this.velocity = { x: 0, y: 0 };
 
         //this.player = player;
-        player = data.player;
-        console.log(player);
-        player.setPlayerItem();
+        levelData = data.level_data;
 
         // Add this object to the gameLoop
         GameEnv.gameObjects.push(this);
@@ -199,11 +197,14 @@ class Item extends GameObject {
         switch (key) {
             case 'e':  
                 //console.log(this.hasCollided("Hi I am Chill Guy, the desert wanderer. I am looking for wisdome and adventure!"));
-                player.setPlayerItem();
-                this.hasCollided("Hi I am Chill Guy, the desert wanderer. I am looking for wisdome and adventure!");
+                
+                if(this.hasCollided("Hi I am Chill Guy, the desert wanderer. I am looking for wisdome and adventure!")){
+                    levelData.setPlayerItem();
+                    this.destroy();
+                }
                 break;
             case 'u':  
-                player.getPlayerItem();
+                //player.getPlayerItem();
                 break;
         }
     }

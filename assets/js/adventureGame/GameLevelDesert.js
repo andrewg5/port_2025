@@ -5,6 +5,7 @@ import GameObject from './GameObject.js';
 import Player from './Player.js';
 import Character from './Character.js';
 import Item from './Item.js';
+import Data from './Data.js';
 
 class GameLevelDesert {
   constructor(path) {
@@ -13,6 +14,8 @@ class GameLevelDesert {
     // Values dependent on GameEnv.create()
     let width = GameEnv.innerWidth;
     let height = GameEnv.innerHeight;
+
+    const levelData = new Data();
 
 
     // Background data
@@ -43,7 +46,8 @@ class GameLevelDesert {
         right: {row: 1, start: 0, columns: 3 },
         up: {row: 3, start: 0, columns: 3 },
         hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
-        keypress: { up: 87, left: 65, down: 83, right: 68 } // W, A, S, D
+        keypress: { up: 87, left: 65, down: 83, right: 68 }, // W, A, S, D
+        level_data: levelData
     };
 
     // NPC data  
@@ -61,7 +65,7 @@ class GameLevelDesert {
         hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
       };
     
-    // Player data for item
+    // data for item
     const spriteItem1 = path + "/images/gamify/item.png"; // be sure to include the path
     const scaleItem1 = 10;
     const spriteDataItem1 = {
@@ -79,18 +83,39 @@ class GameLevelDesert {
         right: {row: 1, start: 0, columns: 1 },
         up: {row: 1, start: 0, columns: 1 },
         hitbox: { widthPercentage: 0.2, heightPercentage: 0.2 },
-        player: new Player(sprite_data_chillguy)
+        level_data: levelData
     };
 
-      
+
+    // data for item
+    const spriteItem2 = path + "/images/gamify/item.png"; // be sure to include the path
+    const scaleItem2 = 10;
+    const spriteDataItem2 = {
+        id: 'Item',
+        greeting: "none",
+        src: spriteItem2,
+        SCALE_FACTOR: scaleItem2,
+        STEP_FACTOR: 1000,
+        ANIMATION_RATE: 50,
+        INIT_POSITION: { x: 400, y: height - (height/scaleItem2) - 300}, 
+        pixels: {height: 160, width: 160},
+        orientation: {rows: 1, columns: 1 },
+        down: {row: 0, start: 0, columns: 1 },
+        left: {row: 1, start: 0, columns: 1 },
+        right: {row: 1, start: 0, columns: 1 },
+        up: {row: 1, start: 0, columns: 1 },
+        hitbox: { widthPercentage: 0.2, heightPercentage: 0.2 },
+        level_data: levelData
+    };
 
 
     // List of objects defnitions for this level
     this.objects = [
       { class: Background, data: image_data_dungeon },
       { class: Player, data: sprite_data_chillguy },
-      {class: Character, data: sprite_data_npc},
-      { class: Item, data: spriteDataItem1},
+      { class: Character, data: sprite_data_npc },
+      { class: Item, data: spriteDataItem1 },
+      {class: Item, data: spriteDataItem2}
     ];
   }
 

@@ -16,7 +16,8 @@ const INIT_POSITION = { x: 0, y: 0 };
  * @method handleKeyDown - Handles key down events to change the object's velocity.
  * @method handleKeyUp - Handles key up events to stop the object's velocity.
  */
-let itemCollected = false; 
+
+let levelData;
 
 class Player extends Character {
     /**
@@ -29,16 +30,9 @@ class Player extends Character {
         this.keypress = data?.keypress || {up: 87, left: 65, down: 83, right: 68};
         this.bindEventListeners();
 
-    }
+        levelData = data.level_data;
 
-    setPlayerItem() {
-        console.log(itemCollected);
-        itemCollected = true;
-    }
 
-    getPlayerItem(){
-        console.log(itemCollected);
-        return itemCollected;
     }
 
     
@@ -81,6 +75,8 @@ class Player extends Character {
         if(Math.abs(this.velocity.x == 2) && Math.abs(this.velocity.y) == 2){
             speed = Math.sqrt((this.velocity.x*this.velocity.x) + (this.velocity.y*this.velocity.y)) * Math.sign(speed);
         }
+
+        console.log(levelData.getPlayerItem());
 
         return speed;
     }

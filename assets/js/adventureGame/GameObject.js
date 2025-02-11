@@ -95,18 +95,15 @@ class GameObject {
     }
 
     hasCollided(greeting) {
-        let collisionDetected = false;
-
         for (var gameObj of GameEnv.gameObjects) {
             if (gameObj.canvas && this != gameObj) {
                 this.isCollision(gameObj);
                 if (this.collisionData.hit) {
-                    collisionDetected = true;
                     const objectGreet = this.collisionData.touchPoints.other.greet;
 
-                        if(objectGreet == greeting){
-                            return true;
-                        }
+                    if(objectGreet == greeting){
+                        return true;
+                    }
                             
                     
                 }
@@ -187,9 +184,8 @@ class GameObject {
 
             this.state.collisionEvents.push(objectID);
             if(objectGreet != "none"){
-                //alert(objectGreet);
+                alert(objectGreet);
             }
-            console.log(objectGreet);
                 
         }
         this.handleReaction();
