@@ -7,7 +7,7 @@ import Character from './Character.js';
 import Item from './Item.js';
 import Data from './Data.js';
 
-class GameLevelDesert {
+class GameLevelPrison {
   constructor(path) {
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
@@ -54,7 +54,7 @@ class GameLevelDesert {
     const sprite_src_npc = path + "/images/gamify/tux.png"; // be sure to include the path
     const sprite_data_npc = {
         id: 'Tux',
-        greeting: "Give item!",
+        greeting: "find item!",
         src: sprite_src_npc,
         SCALE_FACTOR: 8,  // Adjust this based on your scaling needs
         ANIMATION_RATE: 50,
@@ -66,8 +66,8 @@ class GameLevelDesert {
       };
     
     // data for item
-    const spriteItem1 = path + "/images/gamify/item.png"; // be sure to include the path
-    const scaleItem1 = 10;
+    const spriteItem1 = path + "/images/gamify/spoon.png"; // be sure to include the path
+    const scaleItem1 = 20;
     const spriteDataItem1 = {
         id: 'Item',
         greeting: "none",
@@ -76,7 +76,7 @@ class GameLevelDesert {
         STEP_FACTOR: 1000,
         ANIMATION_RATE: 50,
         INIT_POSITION: { x: 200, y: height - (height/scaleItem1) - 100}, 
-        pixels: {height: 160, width: 160},
+        pixels: {height: 32, width: 32},
         orientation: {rows: 1, columns: 1 },
         down: {row: 0, start: 0, columns: 1 },
         left: {row: 1, start: 0, columns: 1 },
@@ -88,8 +88,8 @@ class GameLevelDesert {
 
 
     // data for item
-    const spriteItem2 = path + "/images/gamify/item.png"; // be sure to include the path
-    const scaleItem2 = 10;
+    const spriteItem2 = path + "/images/gamify/spoon.png"; // be sure to include the path
+    const scaleItem2 = 20;
     const spriteDataItem2 = {
         id: 'Item',
         greeting: "none",
@@ -98,7 +98,7 @@ class GameLevelDesert {
         STEP_FACTOR: 1000,
         ANIMATION_RATE: 50,
         INIT_POSITION: { x: 400, y: height - (height/scaleItem2) - 300}, 
-        pixels: {height: 160, width: 160},
+        pixels: {height: 32, width: 32},
         orientation: {rows: 1, columns: 1 },
         down: {row: 0, start: 0, columns: 1 },
         left: {row: 1, start: 0, columns: 1 },
@@ -121,4 +121,4 @@ class GameLevelDesert {
 
 }
 
-export default GameLevelDesert;
+export default GameLevelPrison;

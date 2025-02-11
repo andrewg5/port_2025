@@ -1,6 +1,6 @@
 import GameEnv from './GameEnv.js';
 import GameLevelWater from './GameLevelWater.js';
-import GameLevelDesert from './GameLevelDesert.js';
+import GameLevelPrison from './GameLevelPrison.js';
 import GameLevelishan from './GameLevelishan.js';
 import GameLevelForest from './GameLevelForest.js';
 import { getStats } from "./StatsManager.js";
@@ -11,12 +11,12 @@ class Data {
     
 
     setPlayerItem(){
-        item++;
-        console.log(item);
+        itemsCollected++;
+        console.log(itemsCollected);
     }
 
     getPlayerItem(){
-        return item;
+        return itemsCollected;
     }
     
     

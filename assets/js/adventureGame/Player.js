@@ -18,6 +18,7 @@ const INIT_POSITION = { x: 0, y: 0 };
  */
 
 let levelData;
+const playerSpeed = 4;
 
 class Player extends Character {
     /**
@@ -53,26 +54,26 @@ class Player extends Character {
     handleKeyDown({ keyCode }) {
         switch (keyCode) {
             case this.keypress.up:
-                this.velocity.y = this.normalizeMovement(-2);
+                this.velocity.y = this.normalizeMovement(-1*playerSpeed);
                 this.direction = 'up';
                 break;
             case this.keypress.left:
-                this.velocity.x = this.normalizeMovement(-2);
+                this.velocity.x = this.normalizeMovement(-1 * playerSpeed);
                 this.direction = 'left';
                 break;
             case this.keypress.down:
-                this.velocity.y = this.normalizeMovement(2);
+                this.velocity.y = this.normalizeMovement(playerSpeed);
                 this.direction = 'down';
                 break;
             case this.keypress.right:
-                this.velocity.x = this.normalizeMovement(2);
+                this.velocity.x = this.normalizeMovement(playerSpeed);
                 this.direction = 'right';
                 break;
         }
     }
 
     normalizeMovement(speed){
-        if(Math.abs(this.velocity.x == 2) && Math.abs(this.velocity.y) == 2){
+        if(Math.abs(this.velocity.x == playerSpeed) && Math.abs(this.velocity.y) == playerSpeed){
             speed = Math.sqrt((this.velocity.x*this.velocity.x) + (this.velocity.y*this.velocity.y)) * Math.sign(speed);
         }
 
