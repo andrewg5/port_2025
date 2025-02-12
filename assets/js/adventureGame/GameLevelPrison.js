@@ -6,6 +6,7 @@ import Player from './Player.js';
 import Character from './Character.js';
 import Item from './Item.js';
 import Data from './Data.js';
+import Npc from './Npc.js';
 
 class GameLevelPrison {
   constructor(path) {
@@ -63,6 +64,23 @@ class GameLevelPrison {
         orientation: {rows: 8, columns: 11 },
         down: {row: 5, start: 0, columns: 3 },  // This is the stationary npc, down is default 
         hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
+        // Linux command quiz
+        quiz: { 
+          title: "Linux Command Quiz",
+          questions: [
+            "Which command is used to list files in a directory?\n1. ls\n2. dir\n3. list\n4. show",
+            "Which command is used to change directories?\n1. cd\n2. chdir\n3. changedir\n4. changedirectory",
+            "Which command is used to create a new directory?\n1. mkdir\n2. newdir\n3. createdir\n4. makedir",
+            "Which command is used to remove a file?\n1. rm\n2. remove\n3. delete\n4. erase",
+            "Which command is used to remove a directory?\n1. rmdir\n2. removedir\n3. deletedir\n4. erasedir",
+            "Which command is used to copy files?\n1. cp\n2. copy\n3. duplicate\n4. xerox",
+            "Which command is used to move files?\n1. mv\n2. move\n3. transfer\n4. relocate",
+            "Which command is used to view a file?\n1. cat\n2. view\n3. show\n4. display",
+            "Which command is used to search for text in a file?\n1. grep\n2. search\n3. find\n4. locate",
+            "Which command is used to view the contents of a file?\n1. less\n2. more\n3. view\n4. cat" 
+          ] 
+        },
+        level_data: levelData,
       };
     
     // data for item
@@ -83,7 +101,8 @@ class GameLevelPrison {
         right: {row: 1, start: 0, columns: 1 },
         up: {row: 1, start: 0, columns: 1 },
         hitbox: { widthPercentage: 0.2, heightPercentage: 0.2 },
-        level_data: levelData
+        level_data: levelData,
+        
     };
 
 
@@ -113,7 +132,7 @@ class GameLevelPrison {
     this.objects = [
       { class: Background, data: image_data_dungeon },
       { class: Player, data: sprite_data_chillguy },
-      { class: Character, data: sprite_data_npc },
+      { class: Npc, data: sprite_data_npc },
       { class: Item, data: spriteDataItem1 },
       {class: Item, data: spriteDataItem2}
     ];

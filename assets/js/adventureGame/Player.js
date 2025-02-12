@@ -77,8 +77,6 @@ class Player extends Character {
             speed = Math.sqrt((this.velocity.x*this.velocity.x) + (this.velocity.y*this.velocity.y)) * Math.sign(speed);
         }
 
-        console.log(levelData.getPlayerItem());
-
         return speed;
     }
 
