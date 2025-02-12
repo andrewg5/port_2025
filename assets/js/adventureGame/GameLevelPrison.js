@@ -85,7 +85,8 @@ class GameLevelPrison {
          title: "New Adventure",
          description: "A tickler is near, please help!",
          reward: "30 gold"
-       }
+       },
+       level_data: levelData
      };
       
     // data for item
