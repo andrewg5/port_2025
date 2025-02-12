@@ -6,6 +6,7 @@ import Player from './Player.js';
 import Character from './Character.js';
 import Item from './Item.js';
 import Data from './Data.js';
+import Npc from './Npc.js';
 
 class GameLevelPrison {
   constructor(path) {
@@ -65,6 +66,27 @@ class GameLevelPrison {
         hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
       };
     
+     // NPC data for Questgiver
+     const sprite_src_questgiver = path + "/images/gamify/questgiver.png";
+     const sprite_data_questgiver = {
+       id: 'Questgiver',
+       greeting: "Please help me, I am stuck here and starving. There may be a key nearby...",
+       src: sprite_src_questgiver,
+       SCALE_FACTOR: 10,
+       //STEP_FACTOR: 1000,
+       ANIMATION_RATE: 50,
+       pixels: { height: 2000, width: 2000 },
+       INIT_POSITION: { x: (width/3 ), y: (height/3 ) },
+       orientation: { rows: 4, columns: 4 },
+       down: { row: 0, start: 0, columns: 3 },
+       hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
+       quest: {
+         title: "New Adventure",
+         description: "A tickler is near, please help!",
+         reward: "30 gold"
+       }
+     };
+      
     // data for item
     const spriteItem1 = path + "/images/gamify/spoon.png"; // be sure to include the path
     const scaleItem1 = 20;
@@ -112,10 +134,11 @@ class GameLevelPrison {
     // List of objects defnitions for this level
     this.objects = [
       { class: Background, data: image_data_dungeon },
-      { class: Player, data: sprite_data_chillguy },
+      { class: Player, data: sprite_data_chillguy },  
       { class: Character, data: sprite_data_npc },
       { class: Item, data: spriteDataItem1 },
-      {class: Item, data: spriteDataItem2}
+      { class: Item, data: spriteDataItem2},
+      { class: Npc, data: sprite_src_questgiver }
     ];
   }
 
