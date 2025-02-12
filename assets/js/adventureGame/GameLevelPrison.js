@@ -7,6 +7,7 @@ import Character from './Character.js';
 import Item from './Item.js';
 import Data from './Data.js';
 import Npc from './Npc.js';
+import Npc from './Npc.js';
 
 class GameLevelPrison {
   constructor(path) {
@@ -64,25 +65,29 @@ class GameLevelPrison {
         orientation: {rows: 8, columns: 11 },
         down: {row: 5, start: 0, columns: 3 },  // This is the stationary npc, down is default 
         hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
-        // Linux command quiz
-        quiz: { 
-          title: "Linux Command Quiz",
-          questions: [
-            "Which command is used to list files in a directory?\n1. ls\n2. dir\n3. list\n4. show",
-            "Which command is used to change directories?\n1. cd\n2. chdir\n3. changedir\n4. changedirectory",
-            "Which command is used to create a new directory?\n1. mkdir\n2. newdir\n3. createdir\n4. makedir",
-            "Which command is used to remove a file?\n1. rm\n2. remove\n3. delete\n4. erase",
-            "Which command is used to remove a directory?\n1. rmdir\n2. removedir\n3. deletedir\n4. erasedir",
-            "Which command is used to copy files?\n1. cp\n2. copy\n3. duplicate\n4. xerox",
-            "Which command is used to move files?\n1. mv\n2. move\n3. transfer\n4. relocate",
-            "Which command is used to view a file?\n1. cat\n2. view\n3. show\n4. display",
-            "Which command is used to search for text in a file?\n1. grep\n2. search\n3. find\n4. locate",
-            "Which command is used to view the contents of a file?\n1. less\n2. more\n3. view\n4. cat" 
-          ] 
-        },
-        level_data: levelData,
       };
     
+     // NPC data for Questgiver
+     const sprite_src_questgiver = path + "/images/gamify/questgiver.png";
+     const sprite_data_questgiver = {
+       id: 'Questgiver',
+       greeting: "Please help me, I am stuck here and starving. There may be a key nearby...",
+       src: sprite_src_questgiver,
+       SCALE_FACTOR: 10,
+       //STEP_FACTOR: 1000,
+       ANIMATION_RATE: 50,
+       pixels: { height: 2000, width: 2000 },
+       INIT_POSITION: { x: (width/3 ), y: (height/3 ) },
+       orientation: { rows: 4, columns: 4 },
+       down: { row: 0, start: 0, columns: 3 },
+       hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
+       quest: {
+         title: "New Adventure",
+         description: "A tickler is near, please help!",
+         reward: "30 gold"
+       }
+     };
+      
     // data for item
     const spriteItem1 = path + "/images/gamify/spoon.png"; // be sure to include the path
     const scaleItem1 = 20;
@@ -131,10 +136,11 @@ class GameLevelPrison {
     // List of objects defnitions for this level
     this.objects = [
       { class: Background, data: image_data_dungeon },
-      { class: Player, data: sprite_data_chillguy },
-      { class: Npc, data: sprite_data_npc },
+      { class: Player, data: sprite_data_chillguy },  
+      { class: Character, data: sprite_data_npc },
       { class: Item, data: spriteDataItem1 },
-      {class: Item, data: spriteDataItem2}
+      { class: Item, data: spriteDataItem2},
+      { class: Npc, data: sprite_src_questgiver }
     ];
   }
 
