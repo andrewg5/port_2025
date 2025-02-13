@@ -3,10 +3,8 @@ import GameEnv from './GameEnv.js';
 import Background from './Background.js';
 import GameObject from './GameObject.js';
 import Player from './Player.js';
-import Character from './Character.js';
 import Item from './Item.js';
 import Data from './Data.js';
-import Npc from './Npc.js';
 import Npc from './Npc.js';
 
 class GameLevelPrison {
@@ -31,55 +29,43 @@ class GameLevelPrison {
 
 
     // Player data for Chillguy
-    const sprite_src_chillguy = path + "/images/gamify/chillguy.png"; // be sure to include the path
-    const CHILLGUY_SCALE_FACTOR = 5;
+    const sprite_src_chillguy = path + "/images/gamify/playerSprites.png"; // be sure to include the path
+    const CHILLGUY_SCALE_FACTOR = 12;
     const sprite_data_chillguy = {
         id: 'Chill Guy',
         greeting: "Hi I am Chill Guy, the desert wanderer. I am looking for wisdome and adventure!",
         src: sprite_src_chillguy,
         SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
         STEP_FACTOR: 1000,
-        ANIMATION_RATE: 50,
+        ANIMATION_RATE: 12,
         INIT_POSITION: { x: 0, y: height - (height/CHILLGUY_SCALE_FACTOR) }, 
-        pixels: {height: 384, width: 512},
-        orientation: {rows: 3, columns: 4 },
-        down: {row: 0, start: 0, columns: 3 },
-        left: {row: 2, start: 0, columns: 3 },
-        right: {row: 1, start: 0, columns: 3 },
-        up: {row: 3, start: 0, columns: 3 },
+        pixels: {height: 512, width: 512},
+        orientation: {rows: 4, columns: 4 },
+        down: {row: 0, start: 0, columns: 4 },
+        left: {row: 2, start: 0, columns: 4 },
+        right: {row: 1, start: 0, columns: 4 },
+        up: {row: 3, start: 0, columns: 4 },
         hitbox: { widthPercentage: 0.45, heightPercentage: 0.2 },
         keypress: { up: 87, left: 65, down: 83, right: 68 }, // W, A, S, D
         level_data: levelData
     };
 
     // NPC data  
-    const sprite_src_npc = path + "/images/gamify/tux.png"; // be sure to include the path
-    const sprite_data_npc = {
-        id: 'Tux',
-        greeting: "find item!",
-        src: sprite_src_npc,
-        SCALE_FACTOR: 8,  // Adjust this based on your scaling needs
-        ANIMATION_RATE: 50,
-        pixels: {height: 256, width: 352},
-        INIT_POSITION: { x: (width / 2), y: (height / 2)},
-        orientation: {rows: 8, columns: 11 },
-        down: {row: 5, start: 0, columns: 3 },  // This is the stationary npc, down is default 
-        hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
-      };
+    
     
      // NPC data for Questgiver
-     const sprite_src_questgiver = path + "/images/gamify/questgiver.png";
+     const sprite_src_questgiver = path + "/images/gamify/questGiverNPC.png";
      const sprite_data_questgiver = {
        id: 'Questgiver',
        greeting: "Please help me, I am stuck here and starving. There may be a key nearby...",
        src: sprite_src_questgiver,
        SCALE_FACTOR: 10,
-       //STEP_FACTOR: 1000,
+       STEP_FACTOR: 1000,
        ANIMATION_RATE: 50,
-       pixels: { height: 2000, width: 2000 },
+       pixels: { height: 128, width: 128 },
        INIT_POSITION: { x: (width/3 ), y: (height/3 ) },
-       orientation: { rows: 4, columns: 4 },
-       down: { row: 0, start: 0, columns: 3 },
+       orientation: { rows: 1, columns: 1 },
+       down: { row: 0, start: 0, columns: 1 },
        hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
        quest: {
          title: "New Adventure",
@@ -138,10 +124,9 @@ class GameLevelPrison {
     this.objects = [
       { class: Background, data: image_data_dungeon },
       { class: Player, data: sprite_data_chillguy },  
-      { class: Character, data: sprite_data_npc },
       { class: Item, data: spriteDataItem1 },
       { class: Item, data: spriteDataItem2},
-      { class: Npc, data: sprite_src_questgiver }
+      { class: Npc, data: sprite_data_questgiver }
     ];
   }
 
