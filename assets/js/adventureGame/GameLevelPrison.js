@@ -29,16 +29,16 @@ class GameLevelPrison {
 
 
     // Player data for Chillguy
-    const sprite_src_chillguy = path + "/images/gamify/playerSprites.png"; // be sure to include the path
-    const CHILLGUY_SCALE_FACTOR = 12;
-    const sprite_data_chillguy = {
-        id: 'Chill Guy',
-        greeting: "Hi I am Chill Guy, the desert wanderer. I am looking for wisdome and adventure!",
-        src: sprite_src_chillguy,
+    const sprite_src_player = path + "/images/gamify/playerSprites.png"; // be sure to include the path
+    const PLAYER_SCALE_FACTOR = 12;
+    const sprite_data_player = {
+        id: 'Player',
+        greeting: "Hello, please help me escape this prison.",
+        src: sprite_src_player,
         SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
         STEP_FACTOR: 1000,
         ANIMATION_RATE: 12,
-        INIT_POSITION: { x: 0, y: height - (height/CHILLGUY_SCALE_FACTOR) }, 
+        INIT_POSITION: { x: 0, y: height - (height/PLAYER_SCALE_FACTOR) }, 
         pixels: {height: 512, width: 512},
         orientation: {rows: 4, columns: 4 },
         down: {row: 0, start: 0, columns: 4 },
@@ -123,7 +123,7 @@ class GameLevelPrison {
     // List of objects defnitions for this level
     this.objects = [
       { class: Background, data: image_data_dungeon },
-      { class: Player, data: sprite_data_chillguy },  
+      { class: Player, data: sprite_data_player },  
       { class: Item, data: spriteDataItem1 },
       { class: Item, data: spriteDataItem2},
       { class: Npc, data: sprite_data_questgiver }
