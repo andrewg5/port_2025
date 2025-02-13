@@ -198,7 +198,7 @@ class Item extends GameObject {
             case 'e':  
                 //console.log(this.hasCollided("Hi I am Chill Guy, the desert wanderer. I am looking for wisdome and adventure!"));
                 
-                if(this.hasCollided("Hi I am Chill Guy, the desert wanderer. I am looking for wisdome and adventure!")){
+                if(this.hasCollided("Hello, please help me escape this prison.")){
                     levelData.setPlayerItem();
                     this.destroy();
                 }

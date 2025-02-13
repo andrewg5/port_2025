@@ -35,7 +35,7 @@ class GameLevelPrison {
         id: 'Player',
         greeting: "Hello, please help me escape this prison.",
         src: sprite_src_player,
-        SCALE_FACTOR: CHILLGUY_SCALE_FACTOR,
+        SCALE_FACTOR: PLAYER_SCALE_FACTOR,
         STEP_FACTOR: 1000,
         ANIMATION_RATE: 12,
         INIT_POSITION: { x: 0, y: height - (height/PLAYER_SCALE_FACTOR) }, 
