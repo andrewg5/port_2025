@@ -8,7 +8,7 @@ import { getStats } from "./StatsManager.js";
 class Data {
     constructor() {
         this.itemsCollected = 0;  // Initialize itemsCollected as an instance property
-        this.hasKey = false;      // Add property to track if player has received the key
+        this.keys = 0;      // Add property to track if player has received the key
         this.displayStatus();
     }
 
@@ -17,9 +17,9 @@ class Data {
         console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         console.log("========== GAME STATUS ==========");
         console.log(`Items Collected: ${this.itemsCollected}`);
-        console.log(`Has Escape Key: ${this.hasKey}`);
-        if (this.hasKey) {
-            console.log("🔑 Key obtained from the Wizard!");
+        console.log(`Has Escape Key: ${this.keys}`);
+        if (this.keys == 1) {
+            console.log("🔑 Key obtained!");
         }
         console.log("================================");
     }
@@ -30,8 +30,8 @@ class Data {
         if (this.itemsCollected === 2) {
             const questGiver = GameEnv.gameObjects.find(obj => obj.canvas?.id === 'Questgiver');
             if (questGiver) {
-                if (!this.hasKey) {
-                    this.hasKey = true;
+                if (this.keys == 0) {
+                    this.keys++;
                     questGiver.spriteData.greeting = "Here's the key to escape. Use it wisely!";
                     alert("You received a key from the Questgiver!");
                     console.clear(); // Clear the console first
@@ -40,7 +40,7 @@ class Data {
                     console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                     console.log("========== GAME STATUS ==========");
                     console.log(`Items Collected: ${this.itemsCollected}`);
-                    console.log(`Has Escape Key: ${this.hasKey}`);
+                    console.log(`Has Escape Key: ${this.keys}`);
                     console.log("🔑 Key obtained from the Wizard!");
                     console.log("================================");
                 } else {
@@ -59,11 +59,21 @@ class Data {
 
     hasEscapeKey() {
         this.displayStatus();
-        return this.hasKey;
+        return this.keys;
     }
 
     setPrompt(answers){
-        console.log(answers);
+        for (let i = 0; i < answers.length; i++) {
+            console.log('Index:', i);             // The index of the array
+            console.log('Question Index:', answers[i].questionIndex);
+            console.log('Answer:', answers[i].answer);
+
+            if(answers[i].questionIndex == 0 && answers[i].answer == "ohio"){
+                console.log("correct");
+                this.keys++;
+                console.log(this.keys);
+            }
+        }
     }
 }
 
