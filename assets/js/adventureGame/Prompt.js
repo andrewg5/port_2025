@@ -1,3 +1,5 @@
+let levelData;
+
 const Prompt = {
     isOpen: false,
     dim: false,
@@ -110,6 +112,7 @@ const Prompt = {
             answer: input.value.trim()
         }));
         console.log("Submitted Answers:", answers);
+        levelData.setPrompt(answers);
         // Handle the submission logic (e.g., save answers, validate, etc.)
         alert("Your answers have been submitted!");
         Prompt.isOpen = false;
@@ -164,7 +167,7 @@ const Prompt = {
         
     },
 
-    openPromptPanel(npc) {
+    openPromptPanel(npc, data) {
         const promptDropDown = document.querySelector('.promptDropDown');
         const promptTitle = document.getElementById("promptTitle");
     
@@ -175,6 +178,7 @@ const Prompt = {
     
         this.currentNpc = npc; // Assign the current NPC when opening the panel
         this.isOpen = true;
+        levelData = data;
     
         // Ensure the previous content inside promptDropDown is removed
         promptDropDown.innerHTML = ""; 

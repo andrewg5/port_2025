@@ -66,7 +66,7 @@ class Npc extends Character {
                     // Assign this NPC as the current NPC in the Prompt system
                     Prompt.currentNpc = this;
                     // Open the Prompt panel with this NPC's details
-                    Prompt.openPromptPanel(this);
+                    Prompt.openPromptPanel(this, levelData);
                 }
             });
         }

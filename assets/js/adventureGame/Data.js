@@ -61,6 +61,10 @@ class Data {
         this.displayStatus();
         return this.hasKey;
     }
+
+    setPrompt(answers){
+        console.log(answers);
+    }
 }
 
 export default Data;
