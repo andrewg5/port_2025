@@ -77,6 +77,32 @@ permalink: /gamify/adventureGame
     color: black;
     z-index: 1001;
 }
+
+#inventory {
+    display: grid; /* Force it to be visible */
+    grid-template-columns: repeat(4, 50px);
+    gap: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 2px solid red; /* Debugging border */
+    z-index: 1003;
+}
+
+.inventory-slot {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border: 2px solid #4682b4;
+    text-align: center;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    z-index: 1002;
+}
 </style>
 
 <!-- Score & Stats -->
@@ -91,6 +117,9 @@ permalink: /gamify/adventureGame
     
     <!-- NPC Tracker Button added below the stats -->
     <button id="npcTrackerButton">NPC Tracker</button>
+
+    <!-- Inventory Grid -->
+    <div id="inventory"></div>
 </div>
 
 <div id="gameContainer">
@@ -104,10 +133,14 @@ permalink: /gamify/adventureGame
     <ul id="npcTrackerList"></ul>
 </div>
 
+
+
+
 <script type="module">
     import GameControl from '{{site.baseurl}}/assets/js/adventureGame/GameControl.js';
     import Prompt from '{{site.baseurl}}/assets/js/adventureGame/Prompt.js';
     import { getStats } from '{{site.baseurl}}/assets/js/adventureGame/StatsManager.js';
+    import "{{site.baseurl}}/assets/js/adventureGame/Inventory.js";
 
     const path = "{{site.baseurl}}";
     GameControl.start(path);

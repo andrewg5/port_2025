@@ -4,6 +4,9 @@ import GameLevelPrison from './GameLevelPrison.js';
 import GameLevelishan from './GameLevelishan.js';
 import GameLevelForest from './GameLevelForest.js';
 import { getStats } from "./StatsManager.js";
+import { addItemToInventory } from "./Inventory.js";
+
+
 
 class Data {
     constructor() {
@@ -26,6 +29,7 @@ class Data {
 
     setPlayerItem() {
         this.itemsCollected++;
+        addItemToInventory("spoon");
         
         if (this.itemsCollected === 2) {
             const questGiver = GameEnv.gameObjects.find(obj => obj.canvas?.id === 'Questgiver');
