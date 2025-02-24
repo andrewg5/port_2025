@@ -37,7 +37,6 @@ class Data {
                 if (this.keys == 0) {
                     this.keys++;
                     questGiver.spriteData.greeting = "Here's the key to escape. Use it wisely!";
-                    alert("You received a key from the Questgiver!");
                     console.clear(); // Clear the console first
                     console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                     console.log("🔑 🔑 🔑 KEY OBTAINED! 🔑 🔑 🔑");

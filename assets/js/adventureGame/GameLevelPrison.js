@@ -52,12 +52,20 @@ class GameLevelPrison {
 
     // NPC data  
     
-    
      // NPC data for Questgiver
      const sprite_src_questgiver = path + "/images/gamify/questGiverNPC.png";
      const sprite_data_questgiver = {
        id: 'Questgiver',
-       greeting: "Please help me, I am stuck here and starving. There may be a key nearby...",
+       // Store the base greeting as a regular property
+       baseGreeting: "Please help me, I am stuck here and starving. There may be a key nearby...",
+       // Use a method instead of a getter
+       getGreeting() {
+           const itemsCollected = levelData.getPlayerItem();
+           if (itemsCollected >= 2) {
+               return "Thank you for finding both items! You are now free to leave.";
+           }
+           return this.baseGreeting;
+       },
        src: sprite_src_questgiver,
        SCALE_FACTOR: 10,
        STEP_FACTOR: 1000,

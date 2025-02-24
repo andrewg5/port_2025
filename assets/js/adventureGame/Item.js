@@ -230,12 +230,16 @@ class Item extends GameObject {
     
     handleCollisionEvent() {
         const objectID = this.collisionData.touchPoints.other.id;
-        const objectGreet = this.collisionData.touchPoints.other.greet;
-        // check if the collision type is not already in the collisions array
+        const objectGreet = typeof this.collisionData.touchPoints.other.getGreeting === 'function' 
+            ? this.collisionData.touchPoints.other.getGreeting()
+            : this.collisionData.touchPoints.other.greeting || "none";
+
         if (!this.state.collisionEvents.includes(objectID)) {
-            // add the collisionType to the collisions array, making it the current collision
             this.state.collisionEvents.push(objectID);
-            //alert(objectGreet);
+            // Only show alert if it's not an Item and has a greeting
+            if(objectGreet != "none" && objectID !== 'Item'){
+                alert(objectGreet);
+            }
         }
         this.handleReaction();
     }
