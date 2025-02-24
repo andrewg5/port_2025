@@ -71,7 +71,7 @@ class Data {
             if(answers[i].questionIndex == 0 && answers[i].answer == "ohio"){
                 console.log("correct");
                 this.keys++;
-                console.log(this.keys);
+                console.log("keys obtained: " + this.keys);
             }
         }
     }
