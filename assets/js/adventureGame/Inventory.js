@@ -37,6 +37,16 @@ export function addItemToInventory(itemName) {
     updateInventory();
 }
 
+
+export function removeItemFromInventory(itemName) {
+    const index = inventoryItems.indexOf(itemName);
+    if (index > -1) {
+        inventoryItems.splice(index, 1); // Remove item from array
+        localStorage.setItem("inventoryItems", JSON.stringify(inventoryItems)); // Save updated inventory
+        updateInventory(); // Update inventory UI
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const inventory = document.getElementById("inventory");
     if (!inventory) {
@@ -49,4 +59,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     updateInventory();
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "f" || event.key === "F") {
+        removeItemFromInventory("spoon");
+    }
 });

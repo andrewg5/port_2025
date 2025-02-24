@@ -93,7 +93,7 @@ permalink: /gamify/adventureGame
 .inventory-slot {
     width: 50px;
     height: 50px;
-    background-color: white;
+    background-color: gray;
     border: 2px solid #4682b4;
     text-align: center;
     line-height: 50px;
