@@ -57,7 +57,7 @@ class GameLevelPrison {
      const sprite_data_questgiver = {
        id: 'Questgiver',
        // Store the base greeting as a regular property
-       baseGreeting: "Please help me, I am stuck here and starving. There may be a key nearby...",
+       greeting: "Please help me, I am stuck here and starving. There may be a key nearby...",
        // Use a method instead of a getter
        getGreeting() {
            const itemsCollected = levelData.getPlayerItem();

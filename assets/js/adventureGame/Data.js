@@ -5,6 +5,7 @@ import GameLevelishan from './GameLevelishan.js';
 import GameLevelForest from './GameLevelForest.js';
 import { getStats } from "./StatsManager.js";
 import { addItemToInventory } from "./Inventory.js";
+import { removeItemFromInventory } from './Inventory.js';
 
 
 
@@ -35,17 +36,9 @@ class Data {
             const questGiver = GameEnv.gameObjects.find(obj => obj.canvas?.id === 'Questgiver');
             if (questGiver) {
                 if (this.keys == 0) {
-                    this.keys++;
+
                     questGiver.spriteData.greeting = "Here's the key to escape. Use it wisely!";
-                    console.clear(); // Clear the console first
-                    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-                    console.log("🔑 🔑 🔑 KEY OBTAINED! 🔑 🔑 🔑");
-                    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-                    console.log("========== GAME STATUS ==========");
-                    console.log(`Items Collected: ${this.itemsCollected}`);
-                    console.log(`Has Escape Key: ${this.keys}`);
-                    console.log("🔑 Key obtained from the Wizard!");
-                    console.log("================================");
+                    console.clear(); 
                 } else {
                     questGiver.spriteData.greeting = "You already have the key. Use it to escape!";
                     this.displayStatus();
@@ -54,6 +47,11 @@ class Data {
         } else {
             this.displayStatus();
         }
+    }
+
+    removePlayerItem(item){
+        this.itemsCollected--;
+        removeItemFromInventory(item);
     }
 
     getPlayerItem() {
@@ -67,6 +65,7 @@ class Data {
 
     addKey(){
         this.keys++;
+        addItemToInventory("key");
     }
 
     setPrompt(answers){
