@@ -82,7 +82,7 @@ permalink: /gamify/adventureGame
     display: grid; /* Force it to be visible */
     grid-template-columns: repeat(4, 50px);
     gap: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgb(0, 0, 0);
     padding: 10px;
     border-radius: 5px;
     margin-top: 10px;

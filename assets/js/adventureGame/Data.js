@@ -65,6 +65,10 @@ class Data {
         return this.keys;
     }
 
+    addKey(){
+        this.keys++;
+    }
+
     setPrompt(answers){
         for (let i = 0; i < answers.length; i++) {
             console.log('Index:', i);             // The index of the array
