@@ -8,6 +8,7 @@ import { addItemToInventory } from "./Inventory.js";
 import { removeItemFromInventory } from './Inventory.js';
 
 
+let hasGottenQuizKey = false;
 
 class Data {
     constructor() {
@@ -76,7 +77,12 @@ class Data {
 
             if(answers[i].questionIndex == 0 && answers[i].answer == "ohio"){
                 console.log("correct");
-                this.keys++;
+                if(!hasGottenQuizKey)
+                {
+                    this.addKey();
+                    hasGottenQuizKey = true;
+                }
+                
                 console.log("keys obtained: " + this.keys);
             }
         }
