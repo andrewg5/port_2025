@@ -1,10 +1,16 @@
 let inventoryItems = [];
 
-let path = "http://127.0.0.1:4100/portfolio_2025";
+let imagePath;
 
 const itemImages = {
-    "spoon": path + "/images/gamify/spoon.png"
+    "spoon":  "/images/gamify/spoon.png"
 };
+
+export function setPath(path){
+    imagePath = path;
+
+    console.log(imagePath);
+}
 
 function updateInventory() {
     const inventory = document.getElementById("inventory");
@@ -17,10 +23,10 @@ function updateInventory() {
         slot.className = "inventory-slot";
 
         const img = document.createElement("img");
-        img.src = itemImages[item] || "/assets/images/default.png"; // Fallback image
+        img.src = imagePath + itemImages[item] || imagePath + "/assets/images/default.png"; // Fallback image
         img.alt = item;
-        img.style.width = "50px";
-        img.style.height = "50px";
+        img.style.width = "40px";
+        img.style.height = "40px";
 
         slot.appendChild(img);
         inventory.appendChild(slot);

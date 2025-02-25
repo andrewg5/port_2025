@@ -79,7 +79,7 @@ permalink: /gamify/adventureGame
 }
 
 #inventory {
-    display: grid; /* Force it to be visible */
+    display: grid !important; /* Force it to be visible */
     grid-template-columns: repeat(4, 50px);
     gap: 5px;
     background-color: rgb(0, 0, 0);
@@ -140,12 +140,15 @@ permalink: /gamify/adventureGame
     import GameControl from '{{site.baseurl}}/assets/js/adventureGame/GameControl.js';
     import Prompt from '{{site.baseurl}}/assets/js/adventureGame/Prompt.js';
     import { getStats } from '{{site.baseurl}}/assets/js/adventureGame/StatsManager.js';
-    import "{{site.baseurl}}/assets/js/adventureGame/Inventory.js";
+    import {setPath} from "{{site.baseurl}}/assets/js/adventureGame/Inventory.js";
 
-    const path = "{{site.baseurl}}";
+    const path = '{{site.baseurl}}';
+    console.log(path);
     GameControl.start(path);
     GameControl.startTimer();
     Prompt.initializePrompt();
+
+    setPath(path);
 
     window.submitAnswer = submitAnswer;
     window.showCustomPrompt = showCustomPrompt;
@@ -211,4 +214,5 @@ permalink: /gamify/adventureGame
 
         updateNpcTracker();
     }
+
 </script>
