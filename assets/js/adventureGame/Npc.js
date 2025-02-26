@@ -159,6 +159,7 @@ class Npc extends Character {
     handleCollisionEvent() {
         const objectID = this.collisionData.touchPoints.other.id;
 
+
         if (!this.state.collisionEvents.includes(objectID)) {
             this.state.collisionEvents.push(objectID);
             
@@ -172,7 +173,7 @@ class Npc extends Character {
                 player.isInteracting = true;
             }
 
-            if(levelData.getPlayerItem() == 2){
+            if(levelData.getPlayerItem() == 2 && this.quiz != "Quiz"){
                 levelData.removePlayerItem("spoon");
                 levelData.removePlayerItem("spoon");
                 levelData.addKey();
