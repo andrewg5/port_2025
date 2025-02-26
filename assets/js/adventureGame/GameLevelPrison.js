@@ -53,7 +53,7 @@ class GameLevelPrison {
     // NPC data  
     
      // NPC data for Questgiver
-     const sprite_src_questgiver = path + "/images/gamify/questGiverNPC.png";
+     const sprite_src_questgiver = path + "/images/gamify/questNPC.png";
      const sprite_data_questgiver = {
        id: 'Questgiver',
        // Store the base greeting as a regular property
@@ -67,10 +67,10 @@ class GameLevelPrison {
            return this.baseGreeting;
        },
        src: sprite_src_questgiver,
-       SCALE_FACTOR: 10,
+       SCALE_FACTOR: 9,
        STEP_FACTOR: 1000,
        ANIMATION_RATE: 50,
-       pixels: { height: 128, width: 128 },
+       pixels: { height: 64, width: 64 },
        INIT_POSITION: { x: (width/3 ), y: (height/3 ) },
        orientation: { rows: 1, columns: 1 },
        down: { row: 0, start: 0, columns: 1 },
@@ -85,18 +85,18 @@ class GameLevelPrison {
       
 
     
-    // NPC data for Tux 
-    const sprite_src_tux = path + "/images/gamify/tux.png"; // be sure to include the path
-    const sprite_data_tux = {
-        id: 'Tux',
-        greeting: "Hi I am Tux, the Linux mascot.  I am very happy to spend some linux shell time with you!",
-        src: sprite_src_tux,
-        SCALE_FACTOR: 8,  // Adjust this based on your scaling needs
+    // NPC data for quiz npc 
+    const sprite_src_quiz = path + "/images/gamify/quizNPC.png"; // be sure to include the path
+    const sprite_data_quiz = {
+        id: 'Quiz Giver',
+        greeting: "Answer my question correctly, and I'll give you a key",
+        src: sprite_src_quiz,
+        SCALE_FACTOR: 9,  // Adjust this based on your scaling needs
         ANIMATION_RATE: 50,
-        pixels: {height: 256, width: 352},
+        pixels: {height: 64, width: 64},
         INIT_POSITION: { x: (width / 2), y: (height / 2)},
-        orientation: {rows: 8, columns: 11 },
-        down: {row: 5, start: 0, columns: 3 },  // This is the stationary npc, down is default 
+        orientation: { rows: 1, columns: 1 },
+       down: { row: 0, start: 0, columns: 1 },
         hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
         // Linux command quiz
         quiz: { 
@@ -107,6 +107,7 @@ class GameLevelPrison {
         },
         level_data: levelData,
       };
+
     // data for item
     const spriteItem1 = path + "/images/gamify/spoon.png"; // be sure to include the path
     const scaleItem1 = 20;
@@ -160,7 +161,7 @@ class GameLevelPrison {
       { class: Item, data: spriteDataItem2},
       { class: Npc, data: sprite_data_questgiver },
       
-      { class: Npc, data: sprite_data_tux }
+      { class: Npc, data: sprite_data_quiz }
     ];
   }
 
