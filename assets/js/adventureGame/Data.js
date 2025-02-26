@@ -75,7 +75,7 @@ class Data {
             console.log('Question Index:', answers[i].questionIndex);
             console.log('Answer:', answers[i].answer);
 
-            if(answers[i].questionIndex == 0 && answers[i].answer == "ohio"){
+            if(answers[i].questionIndex == 0 && answers[i].answer == "15"){
                 console.log("correct");
                 if(!hasGottenQuizKey)
                 {

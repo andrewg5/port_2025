@@ -57,12 +57,12 @@ class GameLevelPrison {
      const sprite_data_questgiver = {
        id: 'Questgiver',
        // Store the base greeting as a regular property
-       greeting: "Please help me, I am stuck here and starving. There may be a key nearby...",
+       greeting: "Find me two spoons and I'll give you this key.",
        // Use a method instead of a getter
        getGreeting() {
            const itemsCollected = levelData.getPlayerItem();
            if (itemsCollected >= 2) {
-               return "Thank you for finding both items! You are now free to leave.";
+               return "Thank you for finding both items! You can have this key";
            }
            return this.baseGreeting;
        },
@@ -100,9 +100,9 @@ class GameLevelPrison {
         hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
         // Linux command quiz
         quiz: { 
-          title: "Linux Command Quiz",
+          title: "Quiz",
           questions: [
-            "How many skibdi ohio asiasjdkjakhs?"
+            "How many barrels are located in the prison?"
           ] 
         },
         level_data: levelData,
