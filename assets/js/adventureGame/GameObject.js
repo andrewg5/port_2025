@@ -34,6 +34,19 @@ class GameObject {
             collisionEvents: [],
             movement: { up: true, down: true, left: true, right: true },
         };
+        this.isInteracting = false;
+        
+        // Add component system
+        this.components = new Map();
+    }
+
+    addComponent(name, component) {
+        component.gameObject = this;
+        this.components.set(name, component);
+    }
+
+    getComponent(name) {
+        return this.components.get(name);
     }
 
     /**
@@ -51,7 +64,16 @@ class GameObject {
      * @abstract
      */
     update() {
-        throw new Error("Method 'update()' must be implemented.");
+        // Update all components
+        for (const component of this.components.values()) {
+            if (component.update) {
+                component.update();
+            }
+        }
+        
+        // Perform regular update logic
+        this.draw();
+        this.collisionChecks();
     }
 
     /**

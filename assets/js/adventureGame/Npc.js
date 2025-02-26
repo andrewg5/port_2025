@@ -62,12 +62,16 @@ class Npc extends Character {
     handleKeyInteract() {
         const players = GameEnv.gameObjects.filter(obj => obj.state.collisionEvents.includes(this.spriteData.id));
         const hasQuestions = this.questions.length > 0;
+        
         if (players.length > 0 && hasQuestions) {
             players.forEach(player => {
+                // Force stop player movement before opening prompt
+                player.velocity.x = 0;
+                player.velocity.y = 0;
+                player.isInteracting = true;
+
                 if (!Prompt.isOpen) {
-                    // Assign this NPC as the current NPC in the Prompt system
                     Prompt.currentNpc = this;
-                    // Open the Prompt panel with this NPC's details
                     Prompt.openPromptPanel(this, levelData);
                 }
             });
@@ -155,18 +159,25 @@ class Npc extends Character {
     handleCollisionEvent() {
         const objectID = this.collisionData.touchPoints.other.id;
 
-        // check if the collision type is not already in the collisions array
         if (!this.state.collisionEvents.includes(objectID)) {
-            // add the collisionType to the collisions array, making it the current collision
-
             this.state.collisionEvents.push(objectID);
+            
+            // Find the player object that collided
+            const player = GameEnv.gameObjects.find(obj => obj.canvas?.id === objectID);
+            
+            if (player) {
+                // Force stop player movement
+                player.velocity.x = 0;
+                player.velocity.y = 0;
+                player.isInteracting = true;
+            }
+
             if(levelData.getPlayerItem() == 2){
                 levelData.removePlayerItem("spoon");
                 levelData.removePlayerItem("spoon");
                 levelData.addKey();
                 console.log("key");
             }
-                
         }
     }
 

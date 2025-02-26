@@ -1,5 +1,6 @@
 import GameEnv from './GameEnv.js';
 import Character from './Character.js';
+import Prompt from './Prompt.js';
 
 // Define non-mutable constants as defaults
 const SCALE_FACTOR = 25; // 1/nth of the height of the canvas
@@ -29,16 +30,11 @@ class Player extends Character {
     constructor(data = null) {
         super(data);
         this.keypress = data?.keypress || {up: 87, left: 65, down: 83, right: 68};
+        this.isInteracting = false;
+        this.activeKeys = new Set();
         this.bindEventListeners();
-
         levelData = data.level_data;
-
-
     }
-
-    
-
-
 
     /**
      * Binds key event listeners to handle object movement.
@@ -52,6 +48,17 @@ class Player extends Character {
     }
 
     handleKeyDown({ keyCode }) {
+        // Add key to active keys
+        this.activeKeys.add(keyCode);
+
+        // Don't process movement if interacting
+        if (Prompt.isOpen) {
+            this.velocity.x = 0;
+            this.velocity.y = 0;
+            return;
+        }
+
+        // Process movement normally
         switch (keyCode) {
             case this.keypress.up:
                 this.velocity.y = this.normalizeMovement(-1*playerSpeed);
@@ -72,6 +79,32 @@ class Player extends Character {
         }
     }
 
+    handleKeyUp({ keyCode }) {
+        // Remove key from active keys
+        this.activeKeys.delete(keyCode);
+
+        // Don't process movement if interacting
+        if (Prompt.isOpen) {
+            return;
+        }
+
+        // Only stop movement for the released key
+        switch (keyCode) {
+            case this.keypress.up:
+                if (this.velocity.y < 0) this.velocity.y = 0;
+                break;
+            case this.keypress.left:
+                if (this.velocity.x < 0) this.velocity.x = 0;
+                break;
+            case this.keypress.down:
+                if (this.velocity.y > 0) this.velocity.y = 0;
+                break;
+            case this.keypress.right:
+                if (this.velocity.x > 0) this.velocity.x = 0;
+                break;
+        }
+    }
+
     normalizeMovement(speed){
         if(Math.abs(this.velocity.x == playerSpeed) && Math.abs(this.velocity.y) == playerSpeed){
             speed = Math.sqrt((this.velocity.x*this.velocity.x) + (this.velocity.y*this.velocity.y)) * Math.sign(speed);
@@ -80,30 +113,14 @@ class Player extends Character {
         return speed;
     }
 
-    /**
-     * Handles key up events to stop the player's velocity.
-     * 
-     * This method stops the player's velocity based on the key released.
-     * 
-     * @param {Object} event - The keyup event object.
-     */
-    handleKeyUp({ keyCode }) {
-        switch (keyCode) {
-            case this.keypress.up:
-                this.velocity.y = 0;
-                break;
-            case this.keypress.left:
-                this.velocity.x = 0;
-                break;
-            case this.keypress.down: 
-                this.velocity.y = 0;
-                break;
-            case this.keypress.right: 
-                this.velocity.x = 0;
-                break;
+    update() {
+        // Only force stop if prompt is open
+        if (Prompt.isOpen) {
+            this.velocity.x = 0;
+            this.velocity.y = 0;
         }
+        super.update();
     }
-
 }
 
 export default Player;

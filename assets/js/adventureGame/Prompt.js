@@ -18,6 +18,15 @@ const Prompt = {
             document.body.append(dimDiv);
             dimDiv.style.zIndex = "9998"
             dimDiv.addEventListener("click", Prompt.backgroundDim.remove)
+
+            // Force all players to stop
+            GameEnv.gameObjects.forEach(obj => {
+                if (obj instanceof Player) {
+                    obj.velocity.x = 0;
+                    obj.velocity.y = 0;
+                    obj.isInteracting = true;
+                }
+            });
         },
         remove () {
             this.dim = false
@@ -25,11 +34,25 @@ const Prompt = {
             const dimDiv = document.getElementById("dim");
             dimDiv.remove();
             Prompt.isOpen = false
-            promptTitle.style.display = "none";
-            promptDropDown.style.width = "0"; 
-            promptDropDown.style.top = "0";  
-            promptDropDown.style.left = "-100%"; 
-            promptDropDown.style.transition = "all 0.3s ease-in-out";
+            
+            // Reset player interaction states
+            GameEnv.gameObjects.forEach(obj => {
+                if (obj instanceof Player) {
+                    obj.isInteracting = false;
+                    obj.velocity.x = 0;
+                    obj.velocity.y = 0;
+                }
+            });
+
+            const promptTitle = document.getElementById("promptTitle");
+            const promptDropDown = document.querySelector('.promptDropDown');
+            if (promptTitle) promptTitle.style.display = "none";
+            if (promptDropDown) {
+                promptDropDown.style.width = "0";
+                promptDropDown.style.top = "0";
+                promptDropDown.style.left = "-100%";
+                promptDropDown.style.transition = "all 0.3s ease-in-out";
+            }
         },
     },
 
