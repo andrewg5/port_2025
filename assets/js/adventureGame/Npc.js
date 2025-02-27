@@ -11,8 +11,10 @@ class Npc extends Character {
         this.currentQuestionIndex = 0; // Start from the first question
         this.alertTimeout = null;
         this.bindInteractKeyListeners();
+        
 
         levelData = data.level_data;
+        this.quest = data.quest;
     }
     /**
      * Override the update method to draw the NPC.
@@ -159,7 +161,6 @@ class Npc extends Character {
     handleCollisionEvent() {
         const objectID = this.collisionData.touchPoints.other.id;
 
-
         if (!this.state.collisionEvents.includes(objectID)) {
             this.state.collisionEvents.push(objectID);
             
@@ -173,7 +174,7 @@ class Npc extends Character {
                 player.isInteracting = true;
             }
 
-            if(levelData.getPlayerItem() == 2 && this.quiz != "Quiz"){
+            if(levelData.getPlayerItem() == 2 && this.quest == "2 spoon = 1 key"){
                 levelData.removePlayerItem("spoon");
                 levelData.removePlayerItem("spoon");
                 levelData.addKey();

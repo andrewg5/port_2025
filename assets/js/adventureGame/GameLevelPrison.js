@@ -77,11 +77,7 @@ class GameLevelPrison {
        orientation: { rows: 1, columns: 1 },
        down: { row: 0, start: 0, columns: 1 },
        hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
-       quest: {
-         title: "New Adventure",
-         description: "A tickler is near, please help!",
-         reward: "30 gold"
-       },
+       quest: "2 spoon = 1 key",
        level_data: levelData
      };
       
