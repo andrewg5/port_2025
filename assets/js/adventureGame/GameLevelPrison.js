@@ -50,6 +50,8 @@ class GameLevelPrison {
         level_data: levelData
     };
 
+
+    
     // NPC data  
     
      // NPC data for Questgiver
@@ -108,6 +110,23 @@ class GameLevelPrison {
         level_data: levelData,
       };
 
+    // NPC data for Knight
+    const sprite_src_knight = path + "/images/gamify/knight.png"; // be sure to include the path
+    const sprite_data_knight = {
+        id: 'Knight',
+        greeting: "I am the guardian of this prison. Prove your worth to pass.",
+        src: sprite_src_knight,
+        SCALE_FACTOR: 10,
+        STEP_FACTOR: 1000,
+        ANIMATION_RATE: 50,
+        pixels: { height: 64, width: 64 },
+        INIT_POSITION: { x: (width / 1.6), y: (height / 4) - 200 }, // Shifted right by increasing x value
+        orientation: { rows: 1, columns: 1 },
+        down: { row: 0, start: 0, columns: 1 },
+        hitbox: { widthPercentage: 0.1, heightPercentage: 0.2 },
+        level_data: levelData
+    };
+
     // data for item
     const spriteItem1 = path + "/images/gamify/spoon.png"; // be sure to include the path
     const scaleItem1 = 20;
@@ -160,8 +179,8 @@ class GameLevelPrison {
       { class: Item, data: spriteDataItem1 },
       { class: Item, data: spriteDataItem2},
       { class: Npc, data: sprite_data_questgiver },
-      
-      { class: Npc, data: sprite_data_quiz }
+      { class: Npc, data: sprite_data_quiz },
+      { class: Npc, data: sprite_data_knight } // Added knight NPC
     ];
   }
 
