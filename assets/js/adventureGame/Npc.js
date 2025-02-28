@@ -1,6 +1,7 @@
 import GameEnv from "./GameEnv.js";
 import Character from "./Character.js";
 import Prompt from "./Prompt.js";
+import { removeItemFromInventory } from "./Inventory.js";
 
 let levelData;
 class Npc extends Character {
@@ -11,10 +12,10 @@ class Npc extends Character {
         this.currentQuestionIndex = 0; // Start from the first question
         this.alertTimeout = null;
         this.bindInteractKeyListeners();
-        
 
         levelData = data.level_data;
         this.quest = data.quest;
+        this.keysCollected = false; // Flag to track if keys have been collected
     }
     /**
      * Override the update method to draw the NPC.
@@ -79,8 +80,6 @@ class Npc extends Character {
             });
         }
     }
-
-    
 
     collisionChecks() {
         let collisionDetected = false;
@@ -180,8 +179,27 @@ class Npc extends Character {
                 levelData.addKey();
                 console.log("key");
             }
+
+            // Remove keys from inventory if player has 2 keys
+            if (this.spriteData.id === 'Knight' && levelData.keys >= 2) {
+                removeItemFromInventory("key");
+                removeItemFromInventory("key");
+                levelData.keys -= 2; // Ensure keys count is updated
+                this.keysCollected = true; // Set the flag to indicate keys have been collected
+                this.spriteData.greeting = "You have handed over the keys! You may pass.";
+                console.log("Keys removed from inventory and new message set");
+            }
         }
     }
 
+    /**
+     * Override the draw method to update the greeting message if keys have been collected.
+     */
+    draw() {
+        if (this.keysCollected) {
+            this.spriteData.greeting = "You have handed over the keys! You may pass.";
+        }
+        super.draw();
+    }
 }
 export default Npc;
