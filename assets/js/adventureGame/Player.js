@@ -106,8 +106,10 @@ class Player extends Character {
     }
 
     normalizeMovement(speed){
+        let magnitude;
         if(Math.abs(this.velocity.x == playerSpeed) && Math.abs(this.velocity.y) == playerSpeed){
-            speed = Math.sqrt((this.velocity.x*this.velocity.x) + (this.velocity.y*this.velocity.y)) * Math.sign(speed);
+            magnitude = Math.sqrt((this.velocity.x*this.velocity.x) + (this.velocity.y*this.velocity.y));
+            speed = speed / magnitude;
         }
 
         return speed;
