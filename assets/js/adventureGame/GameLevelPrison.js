@@ -66,7 +66,7 @@ class GameLevelPrison {
         getGreeting() {
             const itemsCollected = levelData.getPlayerItem();
             if (itemsCollected >= 2) {
-                return "Thank you for finding both items! You can have this key";
+                return "Here's the key to escape. Use it wisely!";
             }
             return this.greeting;
         },
@@ -113,7 +113,8 @@ class GameLevelPrison {
         greeting: "I am the guardian of this prison. Pass me the keys to pass.",
         // Use a method instead of a getter
         getGreeting() {
-            const keysCollected = levelData.keys;
+            const keysCollected = levelData.getPlayerItem();    
+                   
             if (keysCollected >= 2) {
                 return "You have all the keys! You may pass. Press M to proceed to the next level.";
             }

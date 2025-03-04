@@ -3,11 +3,8 @@ import GameLevelWater from './GameLevelWater.js';
 import GameLevelPrison from './GameLevelPrison.js';
 import GameLevelishan from './GameLevelishan.js';
 import GameLevelForest from './GameLevelForest.js';
+import GameLevelGrassland from './GameLevelGrassland.js';
 import { getStats } from "./StatsManager.js";
-
-
-
-
 
 const createStatsUI = () => {
     const statsContainer = document.createElement('div');
@@ -50,14 +47,14 @@ const GameControl = {
     currentPass: 0,
     currentLevelIndex: 0,
     levelClasses: [],
-    path: '',
+    path: '',   
 
     start: function(path) {
         GameEnv.create();
-        this.levelClasses = [GameLevelPrison, GameLevelWater, GameLevelishan, GameLevelForest];
+        this.levelClasses = [GameLevelPrison, GameLevelWater, GameLevelishan, GameLevelForest, GameLevelGrassland];
         this.currentLevelIndex = 0;
         this.path = path;
-        this.addExitKeyListener();
+        this.addExitKeyListener();       
         this.loadLevel();
     },
     
@@ -69,7 +66,7 @@ const GameControl = {
         GameEnv.continueLevel = true;
         GameEnv.gameObjects = [];
         this.currentPass = 0;
-        const LevelClass = this.levelClasses[this.currentLevelIndex];
+        const LevelClass = this.levelClasses[this.currentLevelIndex]; // Define LevelClass
         const levelInstance = new LevelClass(this.path);
         this.loadLevelObjects(levelInstance);
     },
@@ -144,7 +141,7 @@ const GameControl = {
             }
         });
     },
-
+    
     /**
      * Updates and displays the game timer.
      * @function updateTimer

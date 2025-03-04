@@ -3,21 +3,30 @@ import { javaURI, fetchOptions } from "../api/config.js";
 /**
  * Fetches and updates the game stats UI (Balance, Chat Score, Questions Answered).
  */
-export function getStats() {
-    const personId = 1;
-    const endpoints = {
-        balance: `${javaURI}/rpg_answer/getBalance/${personId}`,
-        chatScore: `${javaURI}/rpg_answer/getChatScore/${personId}`,
-        questionsAnswered: `${javaURI}/rpg_answer/getQuestionsAnswered/${personId}`
-    };
+export async function getStats() {
+    try {
+        const balanceResponse = await fetch('/api/balance');
+        if (!balanceResponse.ok) {
+            throw new Error('Failed to fetch balance');
+        }
+        const balance = await balanceResponse.json();
+        document.getElementById('balance').textContent = balance.amount;
 
-    for (let [key, url] of Object.entries(endpoints)) {
-        fetch(url, fetchOptions)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById(key).innerText = data ?? 0;
-            })
-            .catch(err => console.error(`Error fetching ${key}:`, err));
+        const chatScoreResponse = await fetch('/api/chatScore');
+        if (!chatScoreResponse.ok) {
+            throw new Error('Failed to fetch chatScore');
+        }
+        const chatScore = await chatScoreResponse.json();
+        document.getElementById('chatScore').textContent = chatScore.score;
+
+        const questionsAnsweredResponse = await fetch('/api/questionsAnswered');
+        if (!questionsAnsweredResponse.ok) {
+            throw new Error('Failed to fetch questionsAnswered');
+        }
+        const questionsAnswered = await questionsAnsweredResponse.json();
+        document.getElementById('questionsAnswered').textContent = questionsAnswered.count;
+    } catch (error) {
+        console.error('Error fetching stats:', error);
     }
 }
 

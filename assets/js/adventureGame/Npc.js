@@ -2,6 +2,9 @@ import GameEnv from "./GameEnv.js";
 import Character from "./Character.js";
 import Prompt from "./Prompt.js";
 import { removeItemFromInventory } from "./Inventory.js";
+import GameControl from "./GameControl.js";
+import GameLevelWater from "./GameLevelWater.js"; // Import GameLevelWater
+
 
 let levelData;
 class Npc extends Character {
@@ -16,6 +19,7 @@ class Npc extends Character {
         levelData = data.level_data;
         this.quest = data.quest;
         this.keysCollected = false; // Flag to track if keys have been collected
+        this.keysHandedOver = false; // Flag to track if keys have been handed over
     }
     /**
      * Override the update method to draw the NPC.
@@ -181,25 +185,26 @@ class Npc extends Character {
             }
 
             // Remove keys from inventory if player has 2 keys
-            if (this.spriteData.id === 'Knight' && levelData.keys >= 2) {
+            if (this.spriteData.id === 'Knight' && levelData.keys >= 2 && !this.keysHandedOver) {
                 removeItemFromInventory("key");
                 removeItemFromInventory("key");
                 levelData.keys -= 2; // Ensure keys count is updated
                 this.keysCollected = true; // Set the flag to indicate keys have been collected
+                this.keysHandedOver = true; // Set the flag to indicate keys have been handed over
                 this.spriteData.greeting = "You have handed over the keys! You may pass.";
-                console.log("Keys removed from inventory and new message set");
+                console.log("Keys removed from inventory and new message set");                
+
+                // Move to the next level
+                setTimeout(() => {
+                    try{
+                        GameControl.handleLevelEnd();
+                        GameControl.loadLevel(GameLevelWater); // Load GameLevelWater
+                    }catch (error) {
+                        console.error('Error loading level:', error);
+                    }                    
+                }, 100); // Delay to ensure the message is displayed before transitioning
             }
         }
-    }
-
-    /**
-     * Override the draw method to update the greeting message if keys have been collected.
-     */
-    draw() {
-        if (this.keysCollected) {
-            this.spriteData.greeting = "You have handed over the keys! You may pass.";
-        }
-        super.draw();
     }
 }
 export default Npc;
